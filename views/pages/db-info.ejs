@@ -10,12 +10,11 @@
 <% tables.forEach(function(r) { %>
   <li><%= r.table %>: <%= r.column %> (<%= r.type %>)</li>
 <% }); %> 
-
-
 </ul>
-
-
-
-
+<h1>Observations</h1>
+<ul>
+  <% obs.forEach(function(r)) { %>
+  <li><%= r.tasks_Id %> for <%= r.duration %></li>}
+</ul>
 </body>
 </html>
