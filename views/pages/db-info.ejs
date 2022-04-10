@@ -3,6 +3,17 @@
 <head>
 <title>DB Info</title>
 <meta charset="UTF-8">
+<style>
+  body {
+  background-color: #E2D2B0;
+  }
+  h1 {
+  background-color: #D2B48C;
+  padding-top: 15px;
+  height: 50px;
+  text-align: center;
+  }
+</style>
 </head>
 <body>
 <h1>Database Tables</h1>
@@ -17,6 +28,5 @@
   <li><%= r.tasks_id %> for <%= r.duration.minutes  || "00" %>:<%= r.duration.seconds  || "00" %></li> 
   <% }); %>
 </ul>
-
 </body>
 </html>

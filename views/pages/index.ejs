@@ -5,11 +5,38 @@
   <meta charset="UTF-8">
   </head>
   <body>
-    <h1>PE Tracker</h1>
+    <style>
+      body {
+      background-color: #E2D2B0;
+      }
+      h1 {
+      background-color: #D2B48C;
+      padding-top: 15px;
+      height: 50px;
+      text-align: center;
+      }
+      nav {
+      padding-top: 8px;
+      font-weight: bold;
+      display: block;
+      width: 250px;
+      height: 75px;
+      background-color: #D2B48C;
+      }
+      button {
+      margin-top: 15px;
+      width: 200px;
+      height: 25px;
+      margin-left: 25px;
+      }
+      </style>
+ <h1>UW-La Crosse PE Tracker</h1>    
     <% tasks.forEach(function(r) {%>
-      <button id='<%= r.id %>'
+      <nav>
+     <button id='<%= r.id %>'
         onClick= 'javascript:logTask(<%= r.id %>);'><%= r.name %></button>
     <% }); %>
+     </nav>
     <script>
   let currentTaskId = null;
 
