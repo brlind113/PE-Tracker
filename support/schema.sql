@@ -31,7 +31,9 @@ CREATE TABLE tasks (
 );
 
 INSERT INTO tasks (name) VALUES
-('Begin/End Class');
+('Begin Class');
+INSERT INTO tasks (name) VALUES
+('End Class');
 INSERT INTO tasks (name) VALUES
 ('Planned Presentation');
 INSERT INTO tasks (name) VALUES
@@ -50,3 +52,6 @@ INSERT INTO tasks (name) VALUES
 ('Behavior Management');
 INSERT INTO tasks (name) VALUES
 ('Other Tasks');
+
+DELETE FROM tasks
+WHERE id = 1;
