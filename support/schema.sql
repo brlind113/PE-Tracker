@@ -52,6 +52,3 @@ INSERT INTO tasks (name) VALUES
 ('Behavior Management');
 INSERT INTO tasks (name) VALUES
 ('Other Tasks');
-
-DELETE FROM tasks
-WHERE id = 1;

@@ -35,32 +35,26 @@
  <h1>UW-La Crosse PE Tracker<br><span id="seconds">getting the local time....</span></h1>  
 
  <nav>
-    <% tasks.forEach(function(r) {%>
-      
+    <% tasks.forEach(function(r) {%> 
      <button id='<%= r.id %>'
-        onClick='javascript:logTask(<%=r.id%>);' ><%= r.name %>
-        
+        onClick='javascript:logTask(<%=r.id%>);' ><%= r.name %>       
       <%
     ;%>
-
     <% }); %>
-
-    <button onclick="myStopFunction()">Stop time</button>
      </nav>
+
     <script>
-    const myInterval = setInterval(currentTime, 1000);
+    const timeClock = setInterval(currentTime, 1000);
     
     function currentTime() {
-      const timer = new Date();
-      document.getElementById("seconds").innerHTML = timer.toLocaleTimeString();
+      const localTime = new Date();
+      document.getElementById("seconds").innerHTML = localTime.toLocaleTimeString();
     }
     
-    function myStopFunction() {
-      clearInterval(myInterval);
-      
+    function stopTimer() {
+      clearInterval(timeClock);
     }
     
-
   let currentTaskId = null;
 
   const logTask = async function(id) {
@@ -85,6 +79,4 @@
     </script>
 
   </body>
-
-
 </html>
