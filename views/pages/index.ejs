@@ -3,58 +3,70 @@
 <head>
   <title>PE Tracker</title>
   <meta charset="UTF-8">
+  <style>
+    body {
+    background-color: #E2D2B0;
+    }
+    h1 {
+    height: 100px;
+    text-align: center;
+    }
+    nav {
+    padding-top: 8px;
+    width: 250px;
+    }
+    button {
+    margin-top: 5px;
+    width: 200px;
+    height: 35px;
+    margin-left: 25px;
+    margin-bottom: 10px;
+    } 
+    button:focus {
+      background-color: green;
+    }
+    </style>
   </head>
   <body>
-    <style>
-      body {
-      background-color: #E2D2B0;
-      }
-      h1 {
-      background-color: #D2B48C;
-      padding-top: 15px;
-      height: 100px;
-      text-align: center;
-      }
-      nav {
-      padding-top: 8px;
-      font-weight: bold;
-      display: block;
-      width: 250px;
-      height: fit-content;
-      background-color: #D2B48C;
-      }
-      button {
-      margin-top: 5px;
-      width: 200px;
-      height: 25px;
-      margin-left: 25px;
-      margin-bottom: 10px;
-      } 
-      </style>
+   
     
- <h1>UW-La Crosse PE Tracker<br><span id="seconds">getting the local time....</span></h1>  
+ <h1>PE Tracker</h1>  
+ 
+ <%tasks.forEach(function(r) {%> 
+      <nav> 
+     <button id='<%=r.id%>'
+        onClick='javascript:stopButton(); logTask(<%=r.id%>);'><%= r.name %>    
+      <%;%></button></nav>  
+    <%});%>
+ 
+  <script>
 
- <nav>
-    <% tasks.forEach(function(r) {%> 
-     <button id='<%= r.id %>'
-        onClick='javascript:logTask(<%=r.id%>);' ><%= r.name %>       
-      <%
-    ;%>
-    <% }); %>
-     </nav>
+var startTime;
+let durationGeneration;
+function startButton() {
+    startTime = Date.now();
+}
+function msToHMS( ms ) {
+    var seconds = ms / 1000;
+    var hours = parseInt( seconds / 3600 ); 
+    seconds = seconds % 3600; 
+    var minutes = parseInt( seconds / 60 );
+    seconds = Math.round(seconds % 60);
+    durationGeneration = ( "'" + "+00" + ":" + minutes + ":" + seconds + "'");
+}
 
-    <script>
-    const timeClock = setInterval(currentTime, 1000);
-    
-    function currentTime() {
-      const localTime = new Date();
-      document.getElementById("seconds").innerHTML = localTime.toLocaleTimeString();
+function stopButton() {
+    if (startTime) {
+        var endTime = Date.now();
+        var difference = endTime - startTime;
+        msToHMS( difference );
+      //  alert('Duration is: ' + durationGeneration);
+        startButton();
+    } else {
+      startButton();
+      durationGeneration = ("'" + "+00" + ":" + "00" + ":" + "01" + "'");
     }
-    
-    function stopTimer() {
-      clearInterval(timeClock);
-    }
-    
+}
   let currentTaskId = null;
 
   const logTask = async function(id) {
@@ -68,7 +80,7 @@
         users_id: -1,
         students_id: -1,
         tasks_id: id,
-        duration: "'+00:00:01'"
+        duration: durationGeneration
       })
     });
       const result = await response.json();
@@ -77,6 +89,5 @@
       currentTaskId = id;
   };
     </script>
-
   </body>
 </html>
